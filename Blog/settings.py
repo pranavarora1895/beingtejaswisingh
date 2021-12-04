@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'webpages.apps.WebpagesConfig',
+    'ckeditor',
 ]
 
 JAZZMIN_SETTINGS = {
