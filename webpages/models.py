@@ -10,6 +10,7 @@ class Post(models.Model):
     photo_home = models.ImageField(upload_to='media/home/%Y/%m')
     photo_blogpage = models.ImageField(upload_to='media/blogpage/%Y/%m')
     content = RichTextField()
+    author = models.CharField(max_length=255, blank=True)
     is_featured = models.BooleanField(default=False)
     created_date = models.DateTimeField(default=datetime.now)
 
