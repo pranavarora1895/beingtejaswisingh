@@ -2,13 +2,16 @@ from django.shortcuts import render
 
 # Create your views here.
 def home(request):
-    return render(request, 'webpages/home.html')
+    data = {'home_page': "active"}
+    return render(request, 'webpages/home.html', data)
 
 def about(request):
-    return render(request, 'webpages/about.html')
+    data = {'about_us_page': "active"}
+    return render(request, 'webpages/about.html', data)
 
 def post(request):
     return render(request, 'webpages/post.html')
 
 def contact(request):
-    return render(request, 'webpages/contact.html')
+    data = {'contact_page': "active"}
+    return render(request, 'webpages/contact.html', data)
