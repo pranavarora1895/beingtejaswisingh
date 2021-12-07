@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'webpages.apps.WebpagesConfig',
     'ckeditor',
+    'contactme.apps.ContactmeConfig',
 ]
 
 JAZZMIN_SETTINGS = {
@@ -114,6 +115,7 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'webpages.custom_context_processor.subject_renderer'
             ],
         },
     },

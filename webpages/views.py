@@ -1,6 +1,7 @@
 from django.shortcuts import render
 from .models import Post
 from django.core.paginator import EmptyPage, PageNotAnInteger, Paginator
+from contactme.models import MyInfo
 # Create your views here.
 def home(request):
     posts = Post.objects.order_by("-created_date")
@@ -31,5 +32,10 @@ def post(request):
     return render(request, 'webpages/post.html')
 
 def contact(request):
-    data = {'contact_page': "active"}
+    info = MyInfo.objects.order_by("-created_date").first()
+
+    data = {
+        'contact_page': "active",
+        'myinfo': info,
+    }
     return render(request, 'webpages/contact.html', data)
