@@ -43,9 +43,15 @@
         <nav class="tm-paging-nav d-inline-block">
             <ul>
                 {%for i in no_of_pages%}
+                {% if i == page_obj.number %}
                 <li class="tm-paging-item active">
                     <a href="?page={{i}}" class="mb-2 tm-btn tm-paging-link">{{i}}</a>
                 </li>
+                {% else %}
+                <li class="tm-paging-item">
+                    <a href="?page={{i}}" class="mb-2 tm-btn tm-paging-link">{{i}}</a>
+                </li>
+                {% endif %}
                 {%endfor%}
             </ul>
         </nav>
