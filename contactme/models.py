@@ -14,6 +14,7 @@ class Contact(models.Model):
 
 class MyInfo(models.Model):
 
+    website_title = models.CharField(max_length=50, blank=True)
     address = models.TextField()
     phone = models.CharField(max_length=255)
     email = models.EmailField(max_length=255)
@@ -27,4 +28,4 @@ class MyInfo(models.Model):
     created_date = models.DateTimeField(auto_now_add=True)
 
     def __str__(self) -> str:
-        return self.email
+        return self.website_title

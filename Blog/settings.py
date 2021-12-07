@@ -56,7 +56,7 @@ JAZZMIN_SETTINGS = {
 
     "welcome_sign": "Welcome to Lifestyle Blog Admin Page",
     "copyright":"MKCS 2021",
-    "search_model":"auth.User",
+    "search_model":"webpages.Post",
     "show_ui_builder": False,
     }
 
