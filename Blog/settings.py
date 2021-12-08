@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     'webpages.apps.WebpagesConfig',
     'ckeditor',
     'contactme.apps.ContactmeConfig',
+    'comments.apps.CommentsConfig',
 ]
 
 JAZZMIN_SETTINGS = {
