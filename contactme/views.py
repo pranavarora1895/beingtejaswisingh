@@ -1,6 +1,6 @@
 from django.shortcuts import redirect, render
 from .models import Contact
-from django.contrib import messages, auth
+from django.contrib import messages
 # Create your views here.
 
 def contactme(request):

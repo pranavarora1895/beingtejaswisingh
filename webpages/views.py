@@ -4,6 +4,7 @@ from django.core.paginator import EmptyPage, PageNotAnInteger, Paginator
 from contactme.models import MyInfo
 from django.db.models import Q
 import random
+from comments.models import Comment
 # Create your views here.
 def home(request):
     posts = Post.objects.order_by("-created_date")
@@ -33,16 +34,19 @@ def about(request):
 def post(request, id):
     single_post = get_object_or_404(Post, pk=id)
     category_search = Post.objects.values_list('category', flat=True).distinct()
-    all_posts = Post.objects.order_by('-created_date')
+    all_posts = Post.objects.all()
     all_posts = all_posts.exclude(title=single_post.title)
     all_posts = list(all_posts)
     all_posts = random.sample(all_posts,3)
 
+    # Comments
+    post_comments = Comment.objects.filter(post_title=single_post).filter(is_postable=True)
     
     data = {
         'post': single_post,
         'category_search': category_search,
         'all_posts': all_posts,
+        'comments': post_comments,
     }
 
     return render(request, 'webpages/post.html', data)

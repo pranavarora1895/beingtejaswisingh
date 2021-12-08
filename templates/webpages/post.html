@@ -6,6 +6,7 @@
     <div class="col-12">
         <hr class="tm-hr-primary tm-mb-55">
         <!-- Video player 1422x800 -->
+        {% include 'messages.html' %}
         <img src="{{post.photo_blogpage.url}}" alt="{{post.title}}" class="img-fluid">
     </div>
 </div>
@@ -23,42 +24,40 @@
             
             <!-- Comments -->
             <div>
+                {% if comments %}
                 <h2 class="tm-color-primary tm-post-title">Comments</h2>
                 <hr class="tm-hr-primary tm-mb-45">
-                <div class="tm-comment tm-mb-45">
+                {% for comment in comments %}
+                <div class="tm-comment tm-mb-20">
                     <figure class="tm-comment-figure">
-                        <img src="{%static 'img/comment-1.jpg' %}" alt="Image" class="mb-2 rounded-circle img-thumbnail">
-                        <figcaption class="tm-color-primary text-center">Mark Sonny</figcaption>
+                        <figcaption class="tm-color-primary text-center">{{comment.name}}</figcaption>
                     </figure>
                     <div>
                         <p>
-                            Praesent aliquam ex vel lectus ornare tritique. Nunc et eros
-                            quis enim feugiat tincidunt et vitae dui. Nullam consectetur
-                            justo ac ex laoreet rhoncus. Nunc id leo pretium, faucibus 
-                            sapien vel, euismod turpis.
-                        </p>
-                        <div class="d-flex justify-content-between">
-                            <a href="#" class="tm-color-primary">REPLY</a>
-                            <span class="tm-color-primary">June 14, 2020</span>
-                        </div>                                                 
+                            {{comment.comment}}
+                        </p>                                                
                     </div>                                
                 </div>
+                {% if comment.reply %}
                 <div class="tm-comment-reply tm-mb-45">
                     <hr>
                     <div class="tm-comment">
                         <figure class="tm-comment-figure">
-                            <img src="{%static 'img/comment-2.jpg'%}" alt="Image" class="mb-2 rounded-circle img-thumbnail">
-                            <figcaption class="tm-color-primary text-center">Jewel Soft</figcaption>    
+                            <figcaption class="tm-color-primary text-center">{{post.author}}</figcaption>    
                         </figure>
                         <p>
-                            Nunc et eros quis enim feugiat tincidunt et vitae dui.
-                            Nullam consectetur justo ac ex laoreet rhoncus. Nunc
-                            id leo pretium, faucibus sapien vel, euismod turpis.
+                            {{comment.reply}}
                         </p>
                     </div>                                
-                    <span class="d-block text-right tm-color-primary">June 21, 2020</span>
+                    <span class="d-block text-right tm-color-primary">{{comment.created_date | date}}</span>
                 </div>
-                <form action="" class="mb-5 tm-comment-form">
+                {%endif%}
+                <hr>
+                {%endfor%}
+                {%endif%}
+                <form method="POST" action="{% url 'comments' %}" class="mb-5 tm-comment-form">
+                    {% csrf_token %}
+                    <input type="hidden" name="postid" value="{{post.id}}">
                     <h2 class="tm-color-primary tm-post-title mb-4">Your comment</h2>
                     <div class="mb-4">
                         <input class="form-control" name="name" type="text" placeholder="Name">
@@ -67,10 +66,10 @@
                         <input class="form-control" name="email" type="text" placeholder="Email">
                     </div>
                     <div class="mb-4">
-                        <textarea class="form-control" name="message" placeholder="Comment" rows="6"></textarea>
+                        <textarea class="form-control" name="comment" placeholder="Comment" rows="6"></textarea>
                     </div>
                     <div class="text-right">
-                        <button class="tm-btn tm-btn-primary tm-btn-small">Submit</button>                        
+                        <button class="tm-btn tm-btn-primary tm-btn-small" type="submit">Submit</button>                        
                     </div>                                
                 </form>                          
             </div>
