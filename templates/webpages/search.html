@@ -1,0 +1,36 @@
+{%extends 'base.html'%}
+{%load static%}
+{%block content%}
+<div class="row tm-row">
+    {% if not posts%}
+    Sorry, no data found.
+    {%else%}
+    {%for post in posts%}
+    <article class="col-12 col-md-6 tm-post">
+        <hr class="tm-hr-primary">
+        <a href="{% url 'post' post.id %}" class="effect-lily tm-post-link tm-pt-60">
+            <div class="tm-post-link-inner">
+                <img src='{{post.photo_home.url}}' alt="Image" class="img-fluid">                            
+            </div>
+            {% if post.is_featured %}
+            <span class="position-absolute tm-new-badge">Featured</span>
+            {%endif%}
+            <h2 class="tm-pt-30 tm-color-primary tm-post-title">{{post.title}}</h2>
+        </a>                    
+        <p class="tm-pt-30">
+            {{post.summary | safe}}
+        </p>
+        <div class="d-flex justify-content-between tm-pt-45">
+            <span class="tm-color-primary">{{post.category}}</span>
+            <span class="tm-color-primary">{{post.created_date | date}}</span>
+        </div>
+        <hr>
+        <div class="d-flex justify-content-between">
+            <span>36 Likes</span>
+            <span>by {{post.author}}</span>
+        </div>
+    </article>
+    {%endfor%}
+    {%endif%}
+</div>
+{%endblock%}
