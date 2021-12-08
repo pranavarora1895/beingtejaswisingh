@@ -47,15 +47,15 @@ INSTALLED_APPS = [
 
 JAZZMIN_SETTINGS = {
     # title of the window (Will default to current_admin_site.site_title if absent or None)
-    "site_title": "Lifestyle by Tejaswi",
+    "site_title": "Being Tejaswi Singh",
 
     # Title on the login screen (19 chars max) (defaults to current_admin_site.site_header if absent or None)
-    "site_header": "Lifestyle by Tejaswi",
+    "site_header": "Being Tejaswi Singh",
 
     # Title on the brand (19 chars max) (defaults to current_admin_site.site_header if absent or None)
-    "site_brand": "Lifestyle by Tejaswi",
+    "site_brand": "Being Tejaswi Singh",
 
-    "welcome_sign": "Welcome to Lifestyle Blog Admin Page",
+    "welcome_sign": "Welcome to Being Tejaswi Singh Admin Page",
     "copyright":"MKCS 2021",
     "search_model":"webpages.Post",
     "show_ui_builder": False,
