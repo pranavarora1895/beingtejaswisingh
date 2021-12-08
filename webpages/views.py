@@ -5,9 +5,13 @@ from contactme.models import MyInfo
 from django.db.models import Q
 import random
 from comments.models import Comment
+from django.db.models import Count
 # Create your views here.
 def home(request):
-    posts = Post.objects.order_by("-created_date")
+    posts = Post.objects.order_by("-created_date").extra(select=
+    {'commentcount': 'SELECT count(*) FROM comments_comment WHERE comments_comment.post_title_id=webpages_post.id AND comments_comment.is_postable=True'},
+    )
+
 
     p = Paginator(posts, 4)
 
@@ -41,19 +45,23 @@ def post(request, id):
 
     # Comments
     post_comments = Comment.objects.filter(post_title=single_post).filter(is_postable=True)
+    comment_count = post_comments.count()
     
     data = {
         'post': single_post,
         'category_search': category_search,
         'all_posts': all_posts,
         'comments': post_comments,
+        'comment_count': comment_count,
     }
 
     return render(request, 'webpages/post.html', data)
 
 def categorysearch(request, cat):
 
-    posts = Post.objects.order_by('-created_date')
+    posts = Post.objects.order_by('-created_date').extra(select=
+    {'commentcount': 'SELECT count(*) FROM comments_comment WHERE comments_comment.post_title_id=webpages_post.id AND comments_comment.is_postable=True'},
+    )
     posts = posts.filter(category__iexact=cat)
     data ={
         'posts': posts,
@@ -72,7 +80,9 @@ def contact(request):
 
 def search(request):
 
-    posts = Post.objects.order_by("-created_date")
+    posts = Post.objects.order_by("-created_date").extra(select=
+    {'commentcount': 'SELECT count(*) FROM comments_comment WHERE comments_comment.post_title_id=webpages_post.id AND comments_comment.is_postable=True'},
+    )
 
     if 'query' in request.GET:
         query = request.GET['query']

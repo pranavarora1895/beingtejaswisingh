@@ -4,6 +4,7 @@ from datetime import datetime
 # Create your models here.
 class Post(models.Model):
 
+
     title = models.CharField(max_length=255)
     summary = RichTextField()
     category = models.CharField(max_length=255, blank=True)
