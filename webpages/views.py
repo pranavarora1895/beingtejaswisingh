@@ -5,7 +5,7 @@ from contactme.models import MyInfo
 from django.db.models import Q
 import random
 from comments.models import Comment
-from django.db.models import Count
+
 # Create your views here.
 def home(request):
     posts = Post.objects.order_by("-created_date").extra(select=
