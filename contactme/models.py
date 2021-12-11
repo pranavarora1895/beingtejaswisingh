@@ -1,5 +1,6 @@
 from django.db import models
-
+from ckeditor.fields import RichTextField
+from datetime import datetime
 # Create your models here.
 class Contact(models.Model):
 
@@ -29,3 +30,12 @@ class MyInfo(models.Model):
 
     def __str__(self) -> str:
         return self.website_title
+
+class About(models.Model):
+
+    about_photo = models.ImageField(upload_to='media/about/%Y/%m')
+    about_me = RichTextField()
+    created_date = models.DateTimeField(default=datetime.now)
+
+    def __str__(self) -> str:
+        return ("About me "+ str(self.created_date))

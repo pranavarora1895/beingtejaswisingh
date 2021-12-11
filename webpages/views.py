@@ -1,7 +1,7 @@
 from django.shortcuts import get_object_or_404, render
 from .models import Post
 from django.core.paginator import EmptyPage, PageNotAnInteger, Paginator
-from contactme.models import MyInfo
+from contactme.models import MyInfo, About
 from django.db.models import Q
 import random
 from comments.models import Comment
@@ -32,7 +32,11 @@ def home(request):
     return render(request, 'webpages/home.html', data)
 
 def about(request):
-    data = {'about_us_page': "active"}
+    aboutme = About.objects.order_by("-created_date").first()
+    data = {
+        'about_us_page': "active",
+        'about_me': aboutme,
+        }
     return render(request, 'webpages/about.html', data)
 
 def post(request, id):
