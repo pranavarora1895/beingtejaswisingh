@@ -13,6 +13,7 @@ https://docs.djangoproject.com/en/3.2/ref/settings/
 from pathlib import Path
 import os
 import django_heroku
+import cloudinary_storage
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -44,6 +45,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'cloudinary_storage',
+    'cloudinary',
     'webpages.apps.WebpagesConfig',
     'ckeditor',
     'contactme.apps.ContactmeConfig',
@@ -189,6 +192,16 @@ STATICFILES_DIRS = [
 ]
 django_heroku.settings(locals())
 
+# Cloudinary Storage 
+
+CLOUDINARY_STORAGE = {
+    'CLOUD_NAME': 'hg8ah0oxf',
+    'API_KEY': '498777113852589',
+    'API_SECRET': 'peQbT9m2wlY4a9C8m2PzLkH2__Y'
+}
+MEDIA_URL = '/media/'  # or any prefix you choose
+MEDIA_ROOT = os.path.join(BASE_DIR, "media")
+DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
