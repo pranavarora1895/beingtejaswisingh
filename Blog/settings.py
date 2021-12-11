@@ -28,6 +28,11 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
+# Google Recaptcha
+
+RECAPTCHA_PUBLIC_KEY = '6LfD85QdAAAAACxNdhOyYcxgARvyU7WMLoXN4-qt'
+RECAPTCHA_PRIVATE_KEY = '6LfD85QdAAAAALWiWoSHklmGeNJZ4rPYhIT0EiNX'
+RECAPTCHA_REQUIRED_SCORE = 0.85
 
 # Application definition
 
@@ -43,6 +48,7 @@ INSTALLED_APPS = [
     'ckeditor',
     'contactme.apps.ContactmeConfig',
     'comments.apps.CommentsConfig',
+    'captcha',
 ]
 
 JAZZMIN_SETTINGS = {
