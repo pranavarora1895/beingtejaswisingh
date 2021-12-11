@@ -5,6 +5,7 @@ from contactme.models import MyInfo, About
 from django.db.models import Q
 import random
 from comments.models import Comment
+from .google_captcha import FormWithCaptcha
 
 # Create your views here.
 def home(request):
@@ -57,6 +58,7 @@ def post(request, id):
         'all_posts': all_posts,
         'comments': post_comments,
         'comment_count': comment_count,
+        'captcha': FormWithCaptcha,
     }
 
     return render(request, 'webpages/post.html', data)
@@ -79,6 +81,7 @@ def contact(request):
     data = {
         'contact_page': "active",
         'myinfo': info,
+        'captcha': FormWithCaptcha,
     }
     return render(request, 'webpages/contact.html', data)
 
