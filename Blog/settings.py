@@ -12,7 +12,7 @@ https://docs.djangoproject.com/en/3.2/ref/settings/
 
 from pathlib import Path
 import os
-
+import django_heroku
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -26,7 +26,7 @@ SECRET_KEY = 'django-insecure-yx#-iwd$_-1*4=f+qxtw7&h-bk1x_mi3xogtso-b=vicmb0#vo
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['beingtejaswisingh.herokuapp.com',]
 
 # Google Recaptcha
 
@@ -136,11 +136,12 @@ WSGI_APPLICATION = 'Blog.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'lifestyleblog',
-        'USER': 'postgres',
-        'PASSWORD': 'Pannu@1995',
-        'HOST': 'localhost'
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': 'dbcurglfcdu3l9',
+        'USER': 'fokyldksxwliwi',
+        'PASSWORD': '56b4edddf9ebac896d3136a9e85595c38c1c96a4be527e115b3f8ac45a47f8fd',
+        'HOST': 'ec2-52-201-106-191.compute-1.amazonaws.com',
+        'PORT': '5432',
     }
 }
 
@@ -186,6 +187,7 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'Blog/static')
 ]
+django_heroku.settings(locals())
 
 
 # Default primary key field type
